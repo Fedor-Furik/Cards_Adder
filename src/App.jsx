@@ -11,7 +11,6 @@ class App extends React.Component {
       status: "no status",
       inputNumber: 0,
       inputName: "no name",
-      inputStatus: "no status"
     };
   }
 
@@ -36,15 +35,13 @@ class App extends React.Component {
     this.setState(copyState);
   }
   addStatus = () => {
+    let selectEL = document.getElementById('statusSelect')
+    let selectedStat = selectEL.value
     const copyState = JSON.parse(JSON.stringify(this.state));
-    copyState.status = this.state.inputStatus;
+    copyState.status = selectedStat;
     this.setState(copyState);
   };
-  changeInputStat= (event) => {
-    const copyState = JSON.parse(JSON.stringify(this.state));
-    copyState.inputStatus = event.target.value;
-    this.setState(copyState);
-  }
+
   render(){
     return (
       <>
@@ -60,12 +57,11 @@ class App extends React.Component {
         value={this.state.inputName} 
         onChange={this.changeInputNam}
       />
-      <input 
-        type="string" 
-        placeholder='name'
-        value={this.state.inputStatus} 
-        onChange={this.changeInputStat}
-      />
+      <select id="statusSelect">
+        <option value="520">неизвестная ошибка</option>
+        <option value="200">все работает</option>
+        <option value="404">страница не найдена</option>
+      </select>
       <button onClick={this.addNumber}>SEND YEARS</button>
       <button onClick={this.addName}>SEND NAME</button>
       <button onClick={this.addStatus}>SEND STATUS</button>
@@ -76,3 +72,9 @@ class App extends React.Component {
 }
 
 export default App
+//<input 
+////        type="string" 
+//        placeholder='name'
+//////        value={this.state.inputStatus} 
+ //       onChange={this.changeInputStat}
+//      />
